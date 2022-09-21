@@ -1,10 +1,10 @@
 import './app-info.css';
 
-const AppInfo = ({data}) => {
+const AppInfo = () => {
     return (
         <div className="app-info">
             <h1>Мабдаул қироат </h1>
-            <h2>{data.lesson}-дарс</h2>
+            <h2>-дарс</h2>
         </div>
     )
 }

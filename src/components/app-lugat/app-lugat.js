@@ -1,13 +1,16 @@
 import AppLugatItem from '../app-lugat-item/app-lugat-item';
 import './app-lugat.css';
 
-const AppLugat = ({data}) => {
-    const elements = data.item.map(item => {
+const AppLugat = ({data, onDelete}) => {
+    const elements = data.map(item => {
         const {id, ...itemProps} = item;
         return(
-            <AppLugatItem key={id} {...itemProps}/>
+            <AppLugatItem 
+                key={id} 
+                {...itemProps}
+                onDelete={() => onDelete(id)}/>
         )
-    });
+    })
 
     return (
         <div className="app-lugat">
