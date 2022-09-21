@@ -1,6 +1,7 @@
 import AppInfo from '../app-info/app-info';
 import AppLugat from '../app-lugat/app-lugat';
 import AppFilter from '../app-filter/app-filter';
+import AddForm from '../app-add-form/app-add-form';
 
 import './app.css';
 
@@ -26,7 +27,7 @@ function App() {
             <AppInfo data={data[0]}/>
             <AppFilter/>
             <AppLugat data={data[0]}/>
-
+            <AddForm/>
         </div>
     ); 
 }
