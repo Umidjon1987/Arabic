@@ -1,14 +1,15 @@
 import AppLugatItem from '../app-lugat-item/app-lugat-item';
 import './app-lugat.css';
 
-const AppLugat = ({data, onDelete}) => {
+const AppLugat = ({data, onDelete, onToggleSelect}) => {
     const elements = data.map(item => {
         const {id, ...itemProps} = item;
         return(
             <AppLugatItem 
                 key={id} 
                 {...itemProps}
-                onDelete={() => onDelete(id)}/>
+                onDelete={() => onDelete(id)}
+                onToggleSelect={() => onToggleSelect(id)}/>
         )
     })
 

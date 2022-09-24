@@ -12,12 +12,13 @@ class App extends Component {
         super(props);
         this.state = {
             data: [
-                    {uzbek: 'китоб', arabic:'كِتَابٌ', id:1},
-                    {uzbek: 'сиёхдон', arabic:'مِحْبَرَةٌ', id:2},
-                    {uzbek: 'лавха', arabic:'لَوْحٌ', id:3},
-                    {uzbek: 'доска', arabic:'سَبُّورَةٌ', id:4}
+                    {lesson:'1', uzbek: 'китоб', arabic:'كِتَابٌ', id:1, select: false},
+                    {lesson:'1', uzbek: 'сиёхдон', arabic:'مِحْبَرَةٌ', id:2, select: false},
+                    {lesson:'1', uzbek: 'лавха', arabic:'لَوْحٌ', id:3, select: false},
+                    {lesson:'1', uzbek: 'доска', arabic:'سَبُّورَةٌ', id:4, select: false}
             ]
         }
+        this.maxId = 5;
     }
 
     deleteItem = (id) => {
@@ -29,15 +30,41 @@ class App extends Component {
         })
     }
 
-    render() {
+    addItem = (lesson, uzbek, arabic) => {
+        const newItem = {
+            lesson,
+            uzbek,
+            arabic,
+            id: this.maxId++,
+            select: false
+        }
+        this.setState(({data}) => {
+            const newArr = [...data, newItem];
+            return {
+                data: newArr
+            }
+        });
+    }
+
+    onToggleSelect = (id) => {
+        this.setState(({data}) => {
+            const index = data.findIndex(elem => elem.id === id);
+            const old = data[index];
+            const newItem = {...old, select: !old.select};
+        })
+    }
+
+   render() {
         return(
             <div className="app">
                 <AppInfo />
                 <AppFilter/>
                 <AppLugat 
                     data={this.state.data}
-                    onDelete={this.deleteItem}/>
-                <AddForm/>
+                    onDelete={this.deleteItem}
+                    onToggleIncrease={this.onToggleIncrease}
+                    onToggleRise={this.onToggleRise}/>
+                <AddForm onAdd={this.addItem}/>
             </div>
             ); 
         }

@@ -5,8 +5,10 @@ class AddForm extends Component {
     constructor(props){
         super(props);
         this.state = {
+            lesson: '',
             uzbek: '',
             arabic: ''
+
         }
     }
 
@@ -17,12 +19,30 @@ class AddForm extends Component {
         })
     }
 
+    onSubmit = (e) => {
+        e.preventDefault();
+        this.props.onAdd(this.state.lesson, this.state.uzbek, this.state.arabic);
+        this.setState({
+            lesson: '',
+            uzbek: '',
+            arabic: ''
+        })
+    }
+
     render() {
-        const {uzbek, arabic} = this.state;
+        const {lesson, uzbek, arabic} = this.state;
         return(
             <div className="app-add-form">
                 <h4>Добавьте новое слово</h4>
-                <form className="add-form d-flex">
+                <form 
+                    className="add-form d-flex"
+                    onSubmit={this.onSubmit}>
+                    <input 
+                        type="text" 
+                        className="form-lesson"
+                        name="lesson"
+                        value={lesson}
+                        onChange={this.onValueChange} />
                     <input 
                         type="text" 
                         className="form-uzbek"
