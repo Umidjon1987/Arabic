@@ -1,5 +1,6 @@
 import { Component } from "react";
-import './app-add-form.css';
+// import './app-add-form.css';
+import './app-add-form.scss';
 
 class AddForm extends Component {
     constructor(props){
@@ -21,6 +22,7 @@ class AddForm extends Component {
 
     onSubmit = (e) => {
         e.preventDefault();
+        if (this.state.lesson.length<1 || this.state.uzbek.length<1 || this.state.arabic.length<1) return;
         this.props.onAdd(this.state.lesson, this.state.uzbek, this.state.arabic);
         this.setState({
             lesson: '',
@@ -57,7 +59,7 @@ class AddForm extends Component {
                         onChange={this.onValueChange} />
                     <button 
                         type="submit" 
-                        className="btn btn-outline-dark">Добавить</button>
+                        className="btn btn-outline-light">Добавить</button>
                 </form>
             </div>
         )
